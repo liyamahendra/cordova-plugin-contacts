@@ -1,7 +1,7 @@
 # cordova-plugin-contacts
 A Cordova Plugin for fetching the Contacts. The official cordova contacts plugin (https://github.com/apache/cordova-plugin-contacts) is deprecated and so this new plugin.
 
-## Platforms Supported
+## Supported Platforms
 - iOS
 
 ## Installation
@@ -25,3 +25,33 @@ Since iOS 10 it's mandatory to provide an usage description in the `info.plist` 
 ```
 
 ### Methods
+- `checkPermissions`: To check if the app has permissions to read contacts. It returns a boolean value indicating the status of the permission.
+- `getPermissions`: To request permissions to read Contacts
+- `fetchContacts`: To read the contacts. The function returns an array of contact objects. A typical Contact object as returned from the plugin is described below:
+
+```
+{
+    "familyName": "Zakroff",
+    "phoneNumbers": [
+        "(555) 766-4823",
+        "(707) 555-1854"
+    ],
+    "givenName": "Hank",
+    "postalAddresses": [
+        {
+            "country": "",
+            "street": "1741 Kearny Street",
+            "postalCode": "94901",
+            "city": "San Rafael",
+            "state": "CA",
+            "subAdministrativeArea": "",
+            "subLocality": ""
+        }
+    ],
+    "id": "2E73EE73-C03F-4D5F-B1E8-44E85A70F170",
+    "emailAddresses": [
+        "hank-zakroff@mac.com"
+    ]
+}
+
+```
