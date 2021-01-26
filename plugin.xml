@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.devapps.contactsplugin" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>ContactsPlugin</name>
+    <js-module name="ContactsPlugin" src="www/ContactsPlugin.js">
+        <clobbers target="cordova.plugins.ContactsPlugin" />
+    </js-module>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="ContactsPlugin">
+            <param name="ios-package" value="ContactsPlugin" />
+            </feature>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSContactsUsageDescription">
+            <string>This app requires access to the contacts.</string>
+        </config-file>
+        <source-file src="src/ios/ContactsPlugin.swift" />
+    </platform>
+
+    <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+</plugin>

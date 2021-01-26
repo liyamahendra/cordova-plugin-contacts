@@ -1,0 +1,17 @@
+{
+    "name": "cordova-plugin-contacts",
+    "version": "1.0.0",
+    "description": "A Cordova Plugin for fetching contacts",
+    "cordova": {
+      "id": "cordova-plugin-contacts",
+      "platforms": [
+        "ios"
+      ]
+    },
+    "keywords": [
+      "ecosystem:cordova",
+      "cordova-ios"
+    ],
+    "author": "Mahendra Liya",
+    "license": "ISC"
+  }
