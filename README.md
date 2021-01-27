@@ -31,27 +31,14 @@ Since iOS 10 it's mandatory to provide an usage description in the `info.plist` 
 
 ```
 {
-    "familyName": "Zakroff",
+    "displayName": "Hank M. Zakroff",
     "phoneNumbers": [
         "(555) 766-4823",
         "(707) 555-1854"
     ],
+    "familyName": "Zakroff",
+    "nickName": "",
     "givenName": "Hank",
-    "postalAddresses": [
-        {
-            "country": "",
-            "street": "1741 Kearny Street",
-            "postalCode": "94901",
-            "city": "San Rafael",
-            "state": "CA",
-            "subAdministrativeArea": "",
-            "subLocality": ""
-        }
-    ],
-    "id": "2E73EE73-C03F-4D5F-B1E8-44E85A70F170",
-    "emailAddresses": [
-        "hank-zakroff@mac.com"
-    ]
+    "id": "2E73EE73-C03F-4D5F-B1E8-44E85A70F170"
 }
-
 ```

@@ -74,11 +74,9 @@ extension ContactsPlugin {
             let store = CNContactStore()
             let keysToFetch = [
                 CNContactIdentifierKey as CNKeyDescriptor,
-                CNContactGivenNameKey as CNKeyDescriptor,
-                CNContactFamilyNameKey as CNKeyDescriptor,
-                CNContactEmailAddressesKey as CNKeyDescriptor,
-                CNContactPhoneNumbersKey as CNKeyDescriptor,
-                CNContactPostalAddressesKey as CNKeyDescriptor,
+                CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
+                CNContactNicknameKey as CNKeyDescriptor,
+                CNContactPhoneNumbersKey as CNKeyDescriptor
             ]
 
             let request = CNContactFetchRequest(keysToFetch: keysToFetch)
@@ -107,13 +105,13 @@ extension ContactsPlugin {
         contactDict["id"] = contact.identifier
         contactDict["givenName"] = contact.givenName
         contactDict["familyName"] = contact.familyName
-
-        if contact.emailAddresses.count > 0 {
-            var emailAddresses = [String]()
-            for (_, emailAddress) in contact.emailAddresses.enumerated() {
-                emailAddresses.append(emailAddress.value as String)
-            }
-            contactDict["emailAddresses"] = emailAddresses
+        contactDict["nickName"] = contact.nickname
+            
+        let formatter = CNContactFormatter()
+        formatter.style = .fullName
+        
+        if let name = formatter.string(from: contact) {
+            contactDict["displayName"] = name
         }
 
         if contact.phoneNumbers.count > 0 {
@@ -124,21 +122,6 @@ extension ContactsPlugin {
             contactDict["phoneNumbers"] = phoneNumbers
         }
 
-        if contact.postalAddresses.count > 0 {
-            var postalAddresses = [[String:String]]()
-            for (_, postalAddress) in contact.postalAddresses.enumerated() {
-                var pa = [String:String]()
-                pa["city"] = postalAddress.value.city
-                pa["street"] = postalAddress.value.street
-                pa["country"] = postalAddress.value.country
-                pa["state"] =  postalAddress.value.state
-                pa["postalCode"] =  postalAddress.value.postalCode
-                pa["subAdministrativeArea"] =  postalAddress.value.subAdministrativeArea
-                pa["subLocality"] =  postalAddress.value.subLocality
-                postalAddresses.append(pa)
-            }
-            contactDict["postalAddresses"] = postalAddresses
-        }
         return contactDict
     }
 }
